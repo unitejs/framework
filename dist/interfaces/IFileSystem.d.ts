@@ -7,6 +7,7 @@ export interface IFileSystem {
     pathFileRelative(pathName1: string, pathName2: string): string;
     pathFormat(pathName: string): string;
     pathGetDirectory(pathName: string): string;
+    pathGetFilename(pathName: string): string;
     pathToWeb(pathName: string): string;
     directoryExists(directoryName: string): Promise<boolean>;
     directoryCreate(directoryName: string): Promise<void>;
@@ -14,7 +15,9 @@ export interface IFileSystem {
     fileExists(directoryName: string, fileName: string): Promise<boolean>;
     fileWriteLines(directoryName: string, fileName: string, contents: string[]): Promise<void>;
     fileWriteJson(directoryName: string, fileName: string, obj: any): Promise<void>;
+    fileWriteBinary(directoryName: string, fileName: string, obj: Uint8Array): Promise<void>;
     fileReadLines(directoryName: string, fileName: string): Promise<string[]>;
     fileReadJson<T>(directoryName: string, fileName: string): Promise<T>;
+    fileReadBinary(directoryName: string, fileName: string): Promise<Uint8Array>;
     fileDelete(directoryName: string, fileName: string): Promise<void>;
 }
