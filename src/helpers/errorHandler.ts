@@ -1,4 +1,3 @@
-import { ExceptionBase } from "./exceptionBase";
 import { JsonHelper } from "./jsonHelper";
 import { StringHelper } from "./stringHelper";
 /**
@@ -8,8 +7,6 @@ export class ErrorHandler {
     public static format(err: any): string {
         if (err === null || err === undefined) {
             return "unknown error";
-        } else if (err instanceof ExceptionBase) {
-            return err.toString();
         } else if (err instanceof Error) {
             return err.message;
         } else {

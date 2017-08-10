@@ -3,7 +3,6 @@
  */
 export * from "./helpers/colorHelper";
 export * from "./helpers/errorHandler";
-export * from "./helpers/exceptionBase";
 export * from "./helpers/jsonHelper";
 export * from "./helpers/objectHelper";
 export * from "./helpers/parameterValidation";

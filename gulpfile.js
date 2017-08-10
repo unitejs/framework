@@ -121,7 +121,7 @@ gulp.task("unit-transpile", () => {
 });
 
 gulp.task("unit-pre-coverage", () => {
-    return gulp.src(`${distFolder}**/*.js`)
+    return gulp.src(`${distFolder}**/!(index|I*).js`)
         .pipe(istanbul({"includeUntested": true}))
         .pipe(istanbul.hookRequire());
 });
@@ -134,7 +134,7 @@ gulp.task("unit-runner", () => {
         }))
         .pipe(istanbul.writeReports({
             "dir": unitReportsFolder,
-            "reporters": ["json"]
+            "reporters": ["json", "text"]
         }));
 
 });
