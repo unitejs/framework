@@ -171,7 +171,7 @@ gulp.task("unit", (cb) => {
 
 gulp.task("coveralls", () => {
     return gulp.src(`${unitReportsFolder}lcov.info`)
-        .pipe(coverall());
+        .pipe(coveralls());
 });
 
 gulp.task("clean-all", ["build-clean", "unit-clean"]);
