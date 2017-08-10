@@ -1,4 +1,5 @@
 const gulp = require("gulp");
+const replace = require("gulp-replace");
 const tsc = require("gulp-typescript");
 const gulpTslint = require("gulp-tslint");
 const tslint = require("tslint");
@@ -138,7 +139,7 @@ gulp.task("unit-runner", () => {
 
 });
 
-gulp.task("unit-post-coverage", () => {
+gulp.task("unit-remap", () => {
     return gulp.src(`${unitReportsFolder}coverage-final.json`)
         .pipe(remapIstanbul({
             "reports": {
@@ -149,18 +150,28 @@ gulp.task("unit-post-coverage", () => {
         }));
 });
 
+
+gulp.task("unit-post-remap", () => {
+    return gulp.src([`${unitReportsFolder}lcov.info`, `${unitReportsFolder}coverage.json`])
+        .pipe(replace(/\/dist\//g, "/src/"))
+        .pipe(replace(/\\dist\\/g, "\\src\\"))
+        .pipe(gulp.dest(unitReportsFolder));
+});
+
+
 gulp.task("unit", (cb) => {
     runSequence("unit-clean",
         "unit-transpile",
         "unit-lint",
         "unit-pre-coverage",
         "unit-runner",
-        "unit-post-coverage", cb);
+        "unit-remap",
+        "unit-post-remap", cb);
 });
 
 gulp.task("coveralls", () => {
     return gulp.src(`${unitReportsFolder}lcov.info`)
-        .pipe(coveralls());
+        .pipe(coverall());
 });
 
 gulp.task("clean-all", ["build-clean", "unit-clean"]);

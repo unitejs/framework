@@ -6,4 +6,4 @@ install:
 script:
   - gulp build
   - gulp unit
-  - cat ./test/unit/reports/lcov.info | node ./node_modules/coveralls/bin/coveralls.js 
+  - gulp coveralls
