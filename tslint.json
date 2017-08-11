@@ -54,7 +54,7 @@
         "no-duplicate-case": true,
         "no-duplicate-super": true,
         "no-duplicate-variable": true,
-        "no-empty": true,
+        "no-empty": false,
         "no-floating-promises": true,
         "no-for-in-array": true,
         "no-import-side-effect": true,
@@ -237,6 +237,7 @@
         "prefer-conditional-expression": false,
         "strict-type-predicates": false,
         "no-submodule-imports": false,
+        "no-object-literal-type-assertion": false,
 
         /**
          * Deprecated rules.  The following rules are deprecated for various reasons.

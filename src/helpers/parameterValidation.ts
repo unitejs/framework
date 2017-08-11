@@ -30,7 +30,7 @@ export class ParameterValidation {
             return false;
         }
 
-        if (value.match(/[\/\(\)&\?#\|<>@:%\s\\\*'"!~`]/)) {
+        if (value.match(/[\/\\\(\)&\?#\|<>@:%\s\*'"!~`]/)) {
             logger.error(name, "must not have any special characters.");
             return false;
         }
@@ -51,6 +51,11 @@ export class ParameterValidation {
             return false;
         }
 
+        if (pattern === undefined || pattern === null) {
+            logger.error(name, "pattern is missing.");
+            return false;
+        }
+
         if (!pattern.test(value)) {
             logger.error(name, `does not match pattern ${patternExplain}.`);
             return false;
@@ -61,14 +66,23 @@ export class ParameterValidation {
         return true;
     }
 
-    public static checkOneOf<T extends string>(logger: ILogger, name: string, value: T | undefined | null, values: T[]): boolean {
+    public static checkOneOf<T extends string>(logger: ILogger, name: string, value: T | undefined | null, values: T[], error?: string): boolean {
         if (value === undefined || value === null || value.length === 0) {
             logger.error(name, "parameter is missing.");
             return false;
         }
 
+        if (values === undefined || values === null || values.length === 0) {
+            logger.error(name, "values are missing.");
+            return false;
+        }
+
         if (values.indexOf(value) === -1) {
-            logger.error(name, `does not match any of the possible values. [${values.join(",")}]`);
+            if (error) {
+                logger.error(name, error);
+            } else {
+                logger.error(name, `does not match any of the possible values. [${values.join(",")}]`);
+            }
             return false;
         }
 
@@ -88,16 +102,14 @@ export class ParameterValidation {
         return true;
     }
 
-    public static isNumeric(logger: ILogger, name: string, value: string | undefined | null): boolean {
-        if (value === undefined || value === null || value.length === 0) {
+    public static notEmptyNumber(logger: ILogger, name: string, value: number | undefined | null): boolean {
+        if (value === undefined || value === null) {
             logger.error(name, "parameter is missing.");
             return false;
         }
 
-        const float = parseFloat(value);
-
-        if (isNaN(float)) {
-            logger.error(name, "is not a number.");
+        if (value <= 0) {
+            logger.error(name, "must be greater than zero.");
             return false;
         }
 
@@ -118,20 +130,6 @@ export class ParameterValidation {
         }
 
         logger.info(name, { value });
-
-        return true;
-    }
-
-    public static async contains(logger: ILogger, name: string, values: string[], value: string | undefined | null, error: string): Promise<boolean> {
-        if (value === undefined || value === null || value.length === 0) {
-            logger.error(name, "parameter is missing.");
-            return false;
-        }
-
-        if (values.indexOf(value) < 0) {
-            logger.error(name, error);
-            return false;
-        }
 
         return true;
     }

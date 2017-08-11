@@ -134,7 +134,7 @@ gulp.task("unit-runner", () => {
         }))
         .pipe(istanbul.writeReports({
             "dir": unitReportsFolder,
-            "reporters": ["json", "text"]
+            "reporters": ["json"]
         }));
 
 });
@@ -143,6 +143,7 @@ gulp.task("unit-remap", () => {
     return gulp.src(`${unitReportsFolder}coverage-final.json`)
         .pipe(remapIstanbul({
             "reports": {
+                "text": "",
                 "json": `${unitReportsFolder}coverage.json`,
                 "html": `${unitReportsFolder}html-report`,
                 "lcovonly": `${unitReportsFolder}lcov.info`
