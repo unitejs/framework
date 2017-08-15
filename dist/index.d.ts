@@ -9,3 +9,4 @@ export * from "./helpers/parameterValidation";
 export * from "./helpers/stringHelper";
 export * from "./interfaces/IFileSystem";
 export * from "./interfaces/ILogger";
+export * from "./loggers/defaultLogger";
