@@ -238,6 +238,7 @@
         "strict-type-predicates": false,
         "no-submodule-imports": false,
         "no-object-literal-type-assertion": false,
+        "no-unbound-method": false,
 
         /**
          * Deprecated rules.  The following rules are deprecated for various reasons.

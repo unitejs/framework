@@ -52,4 +52,108 @@ describe("ObjectHelper", () => {
             Chai.expect(ObjectHelper.getClassName(emptyFunction)).to.equal("<no object>");
         });
     });
+
+    describe("addRemove", () => {
+        it("can fail when called with null", () => {
+            Chai.expect(ObjectHelper.addRemove(null, null, null, true)).to.equal(undefined);
+        });
+
+        it("can fail when called with undefined", () => {
+            Chai.expect(ObjectHelper.addRemove(undefined, undefined, null, true)).to.equal(undefined);
+        });
+
+        it("can fail when called with an array and no key", () => {
+            const arr = [1, 2, 3];
+            ObjectHelper.addRemove(arr, undefined, undefined, true);
+            Chai.expect(arr).to.deep.equal([1, 2, 3]);
+        });
+
+        it("can add the item if not existing", () => {
+            const arr = { a: "1", b: "2" };
+            ObjectHelper.addRemove(arr, "c", "3", true);
+            Chai.expect(arr).to.deep.equal({ a: "1", b: "2", c: "3" });
+        });
+
+        it("can not add the item if already exists", () => {
+            const arr = { a: "1", b: "2", c: "3" };
+            ObjectHelper.addRemove(arr, "c", "3", true);
+            Chai.expect(arr).to.deep.equal({ a: "1", b: "2", c: "3" });
+        });
+
+        it("can remove the item if existing", () => {
+            const arr = { a: "1", b: "2", c: "3" };
+            ObjectHelper.addRemove(arr, "c", "3", false);
+            Chai.expect(arr).to.deep.equal({ a: "1", b: "2" });
+        });
+
+        it("can not remove the item if not existing", () => {
+            const arr = { a: "1", b: "2" };
+            ObjectHelper.addRemove(arr, "c", "3", false);
+            Chai.expect(arr).to.deep.equal({ a: "1", b: "2" });
+        });
+    });
+
+    describe("sort", () => {
+        it("can fail when called with null", () => {
+            Chai.expect(ObjectHelper.sort(null)).to.equal(null);
+        });
+
+        it("can fail when called with undefined", () => {
+            Chai.expect(ObjectHelper.sort(undefined)).to.equal(undefined);
+        });
+
+        it("can succeed when called with an already sorted array", () => {
+            Chai.expect(ObjectHelper.sort({ a: "1", b: "2" })).to.deep.equal({ a: "1", b: "2" });
+        });
+
+        it("can succeed when called with an unsorted array", () => {
+            Chai.expect(ObjectHelper.sort({ b: "2", a: "1" })).to.deep.equal({ a: "1", b: "2" });
+        });
+    });
+
+    describe("merge", () => {
+        it("can fail when called with null", () => {
+            Chai.expect(ObjectHelper.merge(null, null)).to.equal(null);
+        });
+
+        it("can fail when called with undefined", () => {
+            Chai.expect(ObjectHelper.merge(undefined, undefined)).to.equal(undefined);
+        });
+
+        it("can fail when called with undefined left", () => {
+            Chai.expect(ObjectHelper.merge(undefined, { a: "1", b: "2" })).to.deep.equal({ a: "1", b: "2" });
+        });
+
+        it("can fail when called with undefined right", () => {
+            Chai.expect(ObjectHelper.merge({ a: "1", b: "2" }, undefined)).to.deep.equal({ a: "1", b: "2" });
+        });
+
+        it("can succeed when called with an overwrite property", () => {
+            Chai.expect(ObjectHelper.merge({ a: "1", b: "2" }, { b: "3", c: "4" })).to.deep.equal({ a: "1", b: "3", c: "4" });
+        });
+
+        it("can succeed when called with a undefined left sub array", () => {
+            Chai.expect(ObjectHelper.merge({}, { a: ["2", "3"] })).to.deep.equal({ a: ["2", "3"] });
+        });
+
+        it("can succeed when called with a undefined right sub array", () => {
+            Chai.expect(ObjectHelper.merge({ a: ["2", "3"] }, {})).to.deep.equal({ a: ["2", "3"] });
+        });
+
+        it("can succeed when called with a sub array", () => {
+            Chai.expect(ObjectHelper.merge({ a: ["1", "2"] }, { a: ["2", "3"] })).to.deep.equal({ a: ["1", "2", "3"] });
+        });
+
+        it("can succeed when called with a undefined left sub object", () => {
+            Chai.expect(ObjectHelper.merge({}, { a: { m: "2", n: "3" } })).to.deep.equal({ a: { m: "2", n: "3" } });
+        });
+
+        it("can succeed when called with a undefined right sub object", () => {
+            Chai.expect(ObjectHelper.merge({ a: { m: "2", n: "3" } }, {})).to.deep.equal({ a: { m: "2", n: "3" } });
+        });
+
+        it("can succeed when called with a sub object", () => {
+            Chai.expect(ObjectHelper.merge({ a: { m: "2", n: "3" } }, { a: { n: "4", o: "5" } })).to.deep.equal({ a: { m: "2", n: "4", o: "5" } });
+        });
+    });
 });
