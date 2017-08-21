@@ -49,4 +49,30 @@ describe("ArrayHelper", () => {
             Chai.expect(arr).to.deep.equal([1, 2]);
         });
     });
+
+    describe("merge", () => {
+        it("can do nothing when called with null", () => {
+            Chai.expect(ArrayHelper.merge(null, null)).to.equal(null);
+        });
+
+        it("can do nothing when called with undefined", () => {
+            Chai.expect(ArrayHelper.merge(undefined, undefined)).to.equal(undefined);
+        });
+
+        it("can return second array when called with undefined first array", () => {
+            Chai.expect(ArrayHelper.merge(undefined, [1, 2, 3])).to.deep.equal([1, 2, 3]);
+        });
+
+        it("can return first array when called with undefined second array", () => {
+            Chai.expect(ArrayHelper.merge([1, 2, 3], undefined)).to.deep.equal([1, 2, 3]);
+        });
+
+        it("can return combined when called with two arrays", () => {
+            Chai.expect(ArrayHelper.merge([1, 2, 3], [4, 5, 6])).to.deep.equal([1, 2, 3, 4, 5, 6]);
+        });
+
+        it("can return combined when called with two arrays and duplicates", () => {
+            Chai.expect(ArrayHelper.merge([1, 2, 3], [2, 3, 4])).to.deep.equal([1, 2, 3, 4]);
+        });
+    });
 });

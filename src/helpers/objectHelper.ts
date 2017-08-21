@@ -1,3 +1,4 @@
+import { ArrayHelper } from "./arrayHelper";
 /**
  * Object helper methods
  */
@@ -41,22 +42,21 @@ export class ObjectHelper {
         if (obj1 === undefined || obj1 === null) {
             return obj2;
         } else if (obj2 !== undefined && obj2 !== null) {
-            const keys = Object.keys(obj2);
+            if (Array.isArray(obj1) || Array.isArray(obj2)) {
+                obj1 = ArrayHelper.merge(obj1, obj2);
+            } else {
+                const keys = Object.keys(obj2);
 
-            keys.forEach(key => {
-                if (Array.isArray(obj2[key])) {
-                    if (obj1[key] !== undefined && obj1[key] !== null) {
-                        obj1[key] = [...new Set([...obj1[key], ...obj2[key]])];
+                keys.forEach(key => {
+                    if (Array.isArray(obj1[key]) || Array.isArray(obj2[key])) {
+                        obj1[key] = ObjectHelper.merge(obj1[key], obj2[key]);
+                    } else if (typeof obj1[key] === "object" || typeof obj2[key] === "object") {
+                        obj1[key] = ObjectHelper.merge(obj1[key], obj2[key]);
                     } else {
                         obj1[key] = obj2[key];
                     }
-                } else if (typeof obj2[key] === "object") {
-                    obj1[key] = ObjectHelper.merge(obj1[key], obj2[key]);
-                } else {
-                    obj1[key] = obj2[key];
-                }
-            });
-
+                });
+            }
             return obj1;
         } else {
             return obj1;
