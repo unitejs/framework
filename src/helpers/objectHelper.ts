@@ -49,7 +49,7 @@ export class ObjectHelper {
 
                 keys.forEach(key => {
                     if (Array.isArray(obj1[key]) || Array.isArray(obj2[key])) {
-                        obj1[key] = ObjectHelper.merge(obj1[key], obj2[key]);
+                        obj1[key] = ArrayHelper.merge(obj1[key], obj2[key]);
                     } else if (typeof obj1[key] === "object" || typeof obj2[key] === "object") {
                         obj1[key] = ObjectHelper.merge(obj1[key], obj2[key]);
                     } else {

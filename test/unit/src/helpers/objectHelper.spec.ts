@@ -144,6 +144,25 @@ describe("ObjectHelper", () => {
             Chai.expect(ObjectHelper.merge({ a: ["1", "2"] }, { a: ["2", "3"] })).to.deep.equal({ a: ["1", "2", "3"] });
         });
 
+        it("can succeed when called with a complex sub array", () => {
+            const obj1 = { a: [
+                { m: true, n: [1, 2] },
+                { m: true, n: [2, 3] }
+            ]};
+            const obj2 = { a: [
+                { m: true, n: [4, 5] }
+            ]};
+            Chai.expect(ObjectHelper.merge(obj1, obj2))
+                .to.deep.equal({ a: [
+                    { m: true, n: [1, 2, 4, 5] },
+                    { m: true, n: [2, 3] }
+                ] });
+        });
+
+        it("can succeed when called with top level arrays", () => {
+            Chai.expect(ObjectHelper.merge([1, 2, 3], [3, 4, 5])).to.deep.equal([1, 2, 3, 4, 5]);
+        });
+
         it("can succeed when called with a undefined left sub object", () => {
             Chai.expect(ObjectHelper.merge({}, { a: { m: "2", n: "3" } })).to.deep.equal({ a: { m: "2", n: "3" } });
         });

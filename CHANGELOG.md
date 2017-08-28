@@ -1,3 +1,6 @@
+# v0.8.1
+* ArrayHelper and ObjectHelper support complex sub arrays
+
 # v0.8.0
 * Finalise API
 * Unit Tests and Fixes

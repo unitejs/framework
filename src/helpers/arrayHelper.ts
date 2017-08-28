@@ -1,6 +1,8 @@
 /**
  * Array helper methods
  */
+import { ObjectHelper } from "./objectHelper";
+
 export class ArrayHelper {
     public static addRemove(arr: any[], key: any, add: boolean): void {
         if (arr !== undefined && arr !== null && key !== undefined && key !== null) {
@@ -17,18 +19,30 @@ export class ArrayHelper {
         }
     }
 
-    public static merge(obj1: any[], obj2: any[]) : any {
+    public static merge(obj1: any[], obj2: any[]) : any[] {
         if (obj1 === undefined || obj1 === null) {
             return obj2;
         } else if (obj2 === undefined || obj2 === null) {
             return obj1;
         } else {
-            obj2.forEach((item: any) => {
-                const idx = obj1.indexOf(item);
-                if (idx < 0) {
-                    obj1.push(item);
+            // If anything in the array is an object then merge by index
+            if (obj2.filter(item => typeof item === "object").length > 0) {
+                const newArray = [];
+                for (let i = 0; i < Math.max(obj1.length, obj2.length); i++) {
+                    const o1 = i < obj1.length ? obj1[i] : undefined;
+                    const o2 = i < obj2.length ? obj2[i] : undefined;
+                    newArray.push(ObjectHelper.merge(o1, o2));
                 }
-            });
+                return newArray;
+
+            } else {
+                obj2.forEach((item: any) => {
+                    const idx = obj1.indexOf(item);
+                    if (idx < 0) {
+                        obj1.push(item);
+                    }
+                });
+            }
 
             return obj1;
         }

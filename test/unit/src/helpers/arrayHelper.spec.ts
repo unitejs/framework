@@ -74,5 +74,35 @@ describe("ArrayHelper", () => {
         it("can return combined when called with two arrays and duplicates", () => {
             Chai.expect(ArrayHelper.merge([1, 2, 3], [2, 3, 4])).to.deep.equal([1, 2, 3, 4]);
         });
+
+        it("can return combined when called with a complex sub array first array shorter", () => {
+            const obj1 = [
+                { m: true, n: [1, 2] }
+            ];
+            const obj2 = [
+                { m: true, n: [2, 3] },
+                { m: true, n: [4, 5] }
+            ];
+            Chai.expect(ArrayHelper.merge(obj1, obj2))
+                .to.deep.equal([
+                    { m: true, n: [1, 2, 3] },
+                    { m: true, n: [4, 5] }
+                ]);
+        });
+
+        it("can return combined when called with a complex sub array second array shorter", () => {
+            const obj1 = [
+                { m: true, n: [1, 2] },
+                { m: true, n: [2, 3] }
+            ];
+            const obj2 = [
+                { m: true, n: [4, 5] }
+            ];
+            Chai.expect(ArrayHelper.merge(obj1, obj2))
+                .to.deep.equal([
+                    { m: true, n: [1, 2, 4, 5] },
+                    { m: true, n: [2, 3] }
+                ]);
+        });
     });
 });
