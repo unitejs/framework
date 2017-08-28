@@ -43,7 +43,7 @@ export class ObjectHelper {
             return obj2;
         } else if (obj2 !== undefined && obj2 !== null) {
             if (Array.isArray(obj1) || Array.isArray(obj2)) {
-                obj1 = ArrayHelper.merge(obj1, obj2);
+                return ArrayHelper.merge(obj1, obj2);
             } else {
                 const keys = Object.keys(obj2);
 
