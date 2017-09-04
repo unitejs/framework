@@ -48,6 +48,30 @@ describe("ArrayHelper", () => {
             ArrayHelper.addRemove(arr, 3, false);
             Chai.expect(arr).to.deep.equal([1, 2]);
         });
+
+        it("can add the item if not existing with matcher", () => {
+            const arr = [{ id: 1 }, { id: 2 }];
+            ArrayHelper.addRemove(arr, { id: 3 }, true, (object, item) => object.id === item.id);
+            Chai.expect(arr).to.deep.equal([{ id: 1 }, { id: 2 }, { id: 3 }]);
+        });
+
+        it("can not add the item if already exists with matcher", () => {
+            const arr = [{ id: 1 }, { id: 2 }, { id: 3 }];
+            ArrayHelper.addRemove(arr, { id: 3 }, true, (object, item) => object.id === item.id);
+            Chai.expect(arr).to.deep.equal([{ id: 1 }, { id: 2 }, { id: 3 }]);
+        });
+
+        it("can remove the item if existing with matcher", () => {
+            const arr = [{ id: 1 }, { id: 2 }, { id: 3 }];
+            ArrayHelper.addRemove(arr, { id: 3 }, false, (object, item) => object.id === item.id);
+            Chai.expect(arr).to.deep.equal([{ id: 1 }, { id: 2 }]);
+        });
+
+        it("can not remove the item if not existing with matcher", () => {
+            const arr = [{ id: 1 }, { id: 2 }];
+            ArrayHelper.addRemove(arr, { id: 3 }, false, (object, item) => object.id === item.id);
+            Chai.expect(arr).to.deep.equal([{ id: 1 }, { id: 2 }]);
+        });
     });
 
     describe("merge", () => {

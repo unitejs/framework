@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.8.3
+
+* Added parseCode to JsonHelper
+* Added optional matcher arg for arrayHelper.addRemove
+
 ## v0.8.2
 
 * Added IFileSystem.directoryGetFiles and IFileSytem.directoryGetFolders

@@ -26,17 +26,36 @@ export class JsonHelper {
             return object;
         } else {
             let json = JSON.stringify(object, undefined, "\t");
-            // first substitue embedded quotes with FFFF
+            // first substitue embedded double quotes with FFFF
             json = json.replace(/\\"/g, "\uFFFF");
             // now replace all property name quotes
-            json = json.replace(/\"([a-zA-Z_$][a-zA-Z0-9_$]+)\":/g, "$1:");
-            // now replace all other quotes with single ones
-            json = json.replace(/\"/g, "'");
-            // and finally replace the FFFF with original quotes
+            json = json.replace(/"([a-zA-Z_$][a-zA-Z0-9_$]+)":/g, "$1:");
+            // now replace all other double quotes with single ones
+            json = json.replace(/"/g, "'");
+            // and finally replace the FFFF with embedded double quotes
             json = json.replace(/\uFFFF/g, "\\\"");
-            // only remove quotes for known code variables
+            // now remove quotes for known code variables
             json = json.replace(/'__dirname'/g, "__dirname");
             return json;
+        }
+    }
+
+    public static parseCode(text: string): any {
+        if (text === undefined || text === null) {
+            return text;
+        } else {
+            // first substitue embedded sinble quotes with FFFF
+            let jsonText = text.replace(/\\'/g, "\uFFFF");
+            // add double quotes to property names
+            jsonText = jsonText.replace(/([a-zA-Z_$][a-zA-Z0-9_$]+):/g, "\"$1\":");
+            // now replace all other single quotes with double ones
+            jsonText = jsonText.replace(/'/g, "\"");
+            // and finally replace the FFFF with embedded single quotes
+            jsonText = jsonText.replace(/\uFFFF/g, "'");
+            // now add quotes to known variables
+            jsonText = jsonText.replace(/__dirname/g, "\"__dirname\"");
+
+            return JSON.parse(jsonText);
         }
     }
 }

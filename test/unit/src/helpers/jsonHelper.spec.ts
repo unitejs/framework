@@ -81,4 +81,26 @@ describe("JsonHelper", () => {
             Chai.expect(JsonHelper.codify({ p1: "__dirname"})).to.equal("{\n\tp1: __dirname\n}");
         });
     });
+
+    describe("parseCode", () => {
+        it("can return undefined when called with undefined", () => {
+            Chai.expect(JsonHelper.parseCode(undefined)).to.equal(undefined);
+        });
+
+        it("can return null when called with null", () => {
+            Chai.expect(JsonHelper.parseCode(null)).to.equal(null);
+        });
+
+        it("can replace single quotes with double quotes", () => {
+            Chai.expect(JsonHelper.parseCode("{\n\tp1: 'foo'\n, 'p2': 'b\\'ar'}")).to.deep.equal({ p1: "foo", p2: "b'ar"});
+        });
+
+        it("can add quotes to unquoted properties", () => {
+            Chai.expect(JsonHelper.parseCode("{\n\tp1: \"foo\"\n, \"p2\": \"bar\"}")).to.deep.equal({ p1: "foo", p2: "bar"});
+        });
+
+        it("can add quotes to __dirname property", () => {
+            Chai.expect(JsonHelper.parseCode("{\n\tp1: __dirname\n}")).to.deep.equal({ p1: "__dirname"});
+        });
+    });
 });

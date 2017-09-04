@@ -4,4 +4,5 @@
 export declare class JsonHelper {
     static stringify(object: any, space?: string | number): string;
     static codify(object: any): string;
+    static parseCode(text: string): any;
 }
