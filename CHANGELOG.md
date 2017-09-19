@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.2
+
+* Fixed unit tests
+
 ## v1.0.1
 
 * Added Generic parameter to ObjectHelper.addRemove and key value uses keyof

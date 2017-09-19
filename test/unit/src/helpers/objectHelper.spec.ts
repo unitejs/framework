@@ -69,7 +69,7 @@ describe("ObjectHelper", () => {
         });
 
         it("can add the item if not existing", () => {
-            const arr = { a: "1", b: "2" };
+            const arr: any = { a: "1", b: "2" };
             ObjectHelper.addRemove(arr, "c", "3", true);
             Chai.expect(arr).to.deep.equal({ a: "1", b: "2", c: "3" });
         });
@@ -87,7 +87,7 @@ describe("ObjectHelper", () => {
         });
 
         it("can not remove the item if not existing", () => {
-            const arr = { a: "1", b: "2" };
+            const arr: any = { a: "1", b: "2" };
             ObjectHelper.addRemove(arr, "c", "3", false);
             Chai.expect(arr).to.deep.equal({ a: "1", b: "2" });
         });
