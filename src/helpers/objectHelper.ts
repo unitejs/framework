@@ -13,7 +13,7 @@ export class ObjectHelper {
         }
     }
 
-    public static addRemove(object: any, key: any, value: any, add: boolean): void {
+    public static addRemove<T>(object: T, key: keyof T, value: any, add: boolean): void {
         if (object !== undefined && object !== null && key !== undefined && key !== null) {
             if (add) {
                 object[key] = value;

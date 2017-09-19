@@ -1,8 +1,12 @@
 # Changelog
 
+## v1.0.1
+
+* Added Generic parameter to ObjectHelper.addRemove and key value uses keyof
+
 ## v1.0.0
 
-Release
+* Release
 
 ## v0.8.3
 
