@@ -2,7 +2,7 @@
  * Tests for ErrorHandler.
  */
 import * as Chai from "chai";
-import { ErrorHandler } from "../../../../dist/helpers/errorHandler";
+import { ErrorHandler } from "../../../../src/helpers/errorHandler";
 
 describe("ErrorHandler", () => {
     it("can be created", () => {

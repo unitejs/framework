@@ -2,7 +2,7 @@
  * Tests for ObjectHelper.
  */
 import * as Chai from "chai";
-import { ObjectHelper } from "../../../../dist/helpers/objectHelper";
+import { ObjectHelper } from "../../../../src/helpers/objectHelper";
 
 describe("ObjectHelper", () => {
     it("can be created", () => {

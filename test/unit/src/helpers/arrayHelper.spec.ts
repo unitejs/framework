@@ -2,7 +2,7 @@
  * Tests for ArrayHelper.
  */
 import * as Chai from "chai";
-import { ArrayHelper } from "../../../../dist/helpers/arrayHelper";
+import { ArrayHelper } from "../../../../src/helpers/arrayHelper";
 
 describe("ArrayHelper", () => {
     it("can be created", () => {

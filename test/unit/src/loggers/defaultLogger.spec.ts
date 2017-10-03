@@ -3,7 +3,7 @@
  */
 import * as Chai from "chai";
 import * as Sinon from "sinon";
-import { DefaultLogger } from "../../../../dist/loggers/defaultLogger";
+import { DefaultLogger } from "../../../../src/loggers/defaultLogger";
 
 describe("DefaultLogger", () => {
     let sandbox: Sinon.SinonSandbox;

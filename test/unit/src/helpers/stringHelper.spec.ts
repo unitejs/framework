@@ -2,7 +2,7 @@
  * Tests for StringHelper.
  */
 import * as Chai from "chai";
-import { StringHelper } from "../../../../dist/helpers/stringHelper";
+import { StringHelper } from "../../../../src/helpers/stringHelper";
 
 describe("StringHelper", () => {
     it("can be created", () => {

@@ -3,8 +3,8 @@
  */
 import * as Chai from "chai";
 import * as Sinon from "sinon";
-import { ParameterValidation } from "../../../../dist/helpers/parameterValidation";
-import { ILogger } from "../../../../dist/interfaces/ILogger";
+import { ParameterValidation } from "../../../../src/helpers/parameterValidation";
+import { ILogger } from "../../../../src/interfaces/ILogger";
 
 describe("ParameterValidation", () => {
     let sandbox: Sinon.SinonSandbox;

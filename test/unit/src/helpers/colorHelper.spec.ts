@@ -2,7 +2,7 @@
  * Tests for ColorHelper.
  */
 import * as Chai from "chai";
-import { ColorHelper } from "../../../../dist/helpers/colorHelper";
+import { ColorHelper } from "../../../../src/helpers/colorHelper";
 
 describe("ColorHelper", () => {
     it("can be created", () => {
