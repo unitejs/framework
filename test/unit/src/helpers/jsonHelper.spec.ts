@@ -73,6 +73,10 @@ describe("JsonHelper", () => {
             Chai.expect(JsonHelper.codify({ p1: true, p2: 10})).to.equal("{\n\tp1: true,\n\tp2: 10\n}");
         });
 
+        it("can not be confused with url", () => {
+            Chai.expect(JsonHelper.codify({ p1: "http://a.b.com", p2: 10})).to.equal("{\n\tp1: \'http://a.b.com\',\n\tp2: 10\n}");
+        });
+
         it("can return single quoted JSON when called with hyphenated property", () => {
             Chai.expect(JsonHelper.codify({ p1: true, p2: 10, "p-3": "hello"})).to.equal("{\n\tp1: true,\n\tp2: 10,\n\t'p-3': 'hello'\n}");
         });
@@ -97,6 +101,10 @@ describe("JsonHelper", () => {
 
         it("can add quotes to unquoted properties", () => {
             Chai.expect(JsonHelper.parseCode("{\n\tp1: \"foo\"\n, \"p2\": \"bar\"}")).to.deep.equal({ p1: "foo", p2: "bar"});
+        });
+
+        it("can not be confused by embedded url", () => {
+            Chai.expect(JsonHelper.parseCode("{\n\tp1: \"http://a.b.com\"\n, \"p2\": \"bar\"}")).to.deep.equal({ p1: "http://a.b.com", p2: "bar"});
         });
 
         it("can add quotes to __dirname property", () => {

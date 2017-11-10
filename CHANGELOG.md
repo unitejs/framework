@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.3
+
+* Fixe Improved regex for jsonHelper parseCode to tighten property name replacement
+
 ## v1.0.2
 
 * Fixed unit tests

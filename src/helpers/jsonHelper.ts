@@ -44,10 +44,10 @@ export class JsonHelper {
         if (text === undefined || text === null) {
             return text;
         } else {
-            // first substitue embedded sinble quotes with FFFF
+            // first substitue embedded single quotes with FFFF
             let jsonText = text.replace(/\\'/g, "\uFFFF");
             // add double quotes to property names
-            jsonText = jsonText.replace(/([a-zA-Z_$][a-zA-Z0-9_$]+):/g, "\"$1\":");
+            jsonText = jsonText.replace(/\n(?:\s*)([a-zA-Z_$][a-zA-Z0-9_$]+):\s/g, "\"$1\":");
             // now replace all other single quotes with double ones
             jsonText = jsonText.replace(/'/g, "\"");
             // and finally replace the FFFF with embedded single quotes
