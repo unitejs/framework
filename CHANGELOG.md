@@ -1,8 +1,12 @@
 # Changelog
 
+## v1.0.4
+
+* Updated dependencies
+
 ## v1.0.3
 
-* Fixe Improved regex for jsonHelper parseCode to tighten property name replacement
+* Fixed Improved regex for jsonHelper parseCode to tighten property name replacement
 
 ## v1.0.2
 
