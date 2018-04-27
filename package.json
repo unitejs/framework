@@ -1,52 +1,52 @@
 {
-  "name": "unitejs-framework",
-  "version": "1.0.3",
-  "description": "Common framework for UniteJS",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/unitejs/framework.git"
-  },
-  "keywords": [
-    "unite",
-    "unitejs",
-    "framework",
-    "scaffolding",
-    "boilerplate"
-  ],
-  "author": "martyn@unitejs.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/unitejs/framework/issues"
-  },
-  "homepage": "https://github.com/unitejs/framework#readme",
-  "engines": {
-    "node": ">=8.0.0"
-  },
-  "devDependencies": {
-    "@types/chai": "^4.1.3",
-    "@types/mocha": "^5.2.0",
-    "@types/sinon": "^4.3.1",
-    "chai": "^4.1.1",
-    "coveralls": "^3.0.0",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-coveralls": "^0.1.4",
-    "gulp-istanbul": "^1.1.3",
-    "gulp-mocha": "^3.0.1",
-    "gulp-replace": "^0.6.1",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-tslint": "^8.1.3",
-    "gulp-typescript": "^4.0.2",
-    "merge2": "^1.2.1",
-    "minimist": "^1.2.0",
-    "remap-istanbul": "^0.11.1",
-    "run-sequence": "^2.2.1",
-    "sinon": "^4.5.0",
-    "tslint": "^5.9.1",
-    "tslint-microsoft-contrib": "^5.0.3",
-    "typescript": "^2.8.3"
-  },
-  "dependencies": {}
+    "name": "unitejs-framework",
+    "version": "1.0.3",
+    "description": "Common framework for UniteJS",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/unitejs/framework.git"
+    },
+    "keywords": [
+        "unite",
+        "unitejs",
+        "framework",
+        "scaffolding",
+        "boilerplate"
+    ],
+    "author": "martyn@unitejs.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/unitejs/framework/issues"
+    },
+    "homepage": "https://github.com/unitejs/framework#readme",
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.1.3",
+        "@types/mocha": "^5.2.0",
+        "@types/sinon": "^4.3.1",
+        "chai": "^4.1.1",
+        "coveralls": "^3.0.0",
+        "del": "^3.0.0",
+        "gulp": "^3.9.1",
+        "gulp-coveralls": "^0.1.4",
+        "gulp-istanbul": "^1.1.3",
+        "gulp-mocha": "^3.0.1",
+        "gulp-replace": "^0.6.1",
+        "gulp-sourcemaps": "^2.6.4",
+        "gulp-tslint": "^8.1.3",
+        "gulp-typescript": "^4.0.2",
+        "merge2": "^1.2.1",
+        "minimist": "^1.2.0",
+        "remap-istanbul": "^0.11.1",
+        "run-sequence": "^2.2.1",
+        "sinon": "^4.5.0",
+        "tslint": "^5.9.1",
+        "tslint-microsoft-contrib": "^5.0.3",
+        "typescript": "^2.8.3"
+    },
+    "dependencies": {}
 }
