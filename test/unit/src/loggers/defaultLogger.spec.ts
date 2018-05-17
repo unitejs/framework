@@ -12,7 +12,7 @@ describe("DefaultLogger", () => {
     let logMessages: string[];
 
     beforeEach(() => {
-        sandbox = Sinon.sandbox.create();
+        sandbox = Sinon.createSandbox();
         originalConsoleLog = console.log;
         consoleLogStub = sandbox.stub(console, "log");
         consoleLogStub.callsFake((message?: any, ...optionalParams: any[]) => {

@@ -13,7 +13,7 @@ describe("ParameterValidation", () => {
     let spiedInfoMethod: Sinon.SinonSpy;
 
     beforeEach(() => {
-        sandbox = Sinon.sandbox.create();
+        sandbox = Sinon.createSandbox();
         loggerStub = <ILogger>{};
         loggerStub.error = () => {};
         loggerStub.info = () => {};
