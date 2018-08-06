@@ -13,6 +13,7 @@ describe("DefaultLogger", () => {
 
     beforeEach(() => {
         sandbox = Sinon.createSandbox();
+        /* tslint:disable:no-console */
         originalConsoleLog = console.log;
         consoleLogStub = sandbox.stub(console, "log");
         consoleLogStub.callsFake((message?: any, ...optionalParams: any[]) => {
@@ -24,6 +25,7 @@ describe("DefaultLogger", () => {
 
     afterEach(async () => {
         sandbox.restore();
+        /* tslint:disable:no-console */
         console.log = originalConsoleLog;
     });
 
