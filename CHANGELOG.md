@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.5
+
+* Removed gulp-util references
+
 ## v1.0.4
 
 * Updated dependencies
